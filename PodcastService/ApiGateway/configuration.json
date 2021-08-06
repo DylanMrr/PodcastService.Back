@@ -1,0 +1,80 @@
+﻿{
+  "ReRoutes": [
+    //category
+    {
+      "DownstreamPathTemplate": "/api/category",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.category.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/category",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    //identity
+    {
+      "DownstreamPathTemplate": "/api/account/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.identity.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/account/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.identity.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    //podcast
+    {
+      "DownstreamPathTemplate": "/api/podcast/createpodcast",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.podcast.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/podcast/createpodcast",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/podcast/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.podcast.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/podcast/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "GlobalConfiguration": {}
+}

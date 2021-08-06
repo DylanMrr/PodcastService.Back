@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+    apigateway:
+        image: ${DOCKER_REGISTRY-}apigateway
+        container_name: apigateway
+        build:
+            context: .
+            dockerfile: ApiGateway/Dockerfile
+        ports:
+            - "5504:80"   
+
+    podcastservice.category.api:
+        image: ${DOCKER_REGISTRY-}podcastservice.category.api
+        container_name: podcastservice.category.api
+        build:
+            context: .
+            dockerfile: PodcastService.Category.Api/Dockerfile
+        depends_on:
+            - databases
+        ports:
+            - "5500:80"     
+
+    podcastservice.identity.api:
+        image: ${DOCKER_REGISTRY-}podcastservice.identity.api
+        container_name: podcastservice.identity.api
+        build:
+            context: .
+            dockerfile: PodcastService.Identity.Api/Dockerfile
+        depends_on:
+            - databases
+        ports:
+            - "5502:80"   
+            
+    podcastservice.podcast.api:
+        image: ${DOCKER_REGISTRY-}podcastservice.podcast.api
+        container_name: podcastservice.podcast.api
+        build:
+            context: .
+            dockerfile: PodcastService.Podcast.Api/Dockerfile
+        depends_on:
+            - databases
+        ports:
+            - "5505:80"  
+
+    databases:
+        image: "mcr.microsoft.com/mssql/server"
+        container_name: databases
+        ports:
+            - "1433:1433"
+        volumes:
+            - "podcast.identity:/home/podcast/identity"
+        environment: 
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=veryStrong_password123
+            - MSSQL_PID=Express
+
+volumes:
+    podcast.identity:
+        external: true

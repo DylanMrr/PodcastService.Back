@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PodcastService.Podcast.Api</name>
+    </assembly>
+    <members>
+        <member name="P:PodcastService.Podcast.Api.Data.Podcast.CreatorId">
+            <summary>
+            UserId создателя
+            </summary>
+        </member>
+        <member name="P:PodcastService.Podcast.Api.Data.Podcast.Name">
+            <summary>
+            Название подкаста
+            </summary>
+        </member>
+        <member name="P:PodcastService.Podcast.Api.Data.Podcast.Description">
+            <summary>
+            Описание подкаста
+            </summary>
+        </member>
+        <member name="P:PodcastService.Podcast.Api.Data.Podcast.CreatedUtc">
+            <summary>
+            Дата создания
+            </summary>
+        </member>
+        <member name="P:PodcastService.Podcast.Api.Data.Podcast.PodcastSubscribers">
+            <summary>
+            Подписчики
+            </summary>
+        </member>
+        <member name="P:PodcastService.Podcast.Api.Data.PodcastSubscribers.UserId">
+            <summary>
+            subscriber
+            </summary>
+        </member>
+    </members>
+</doc>
