@@ -23,13 +23,16 @@ namespace PodcastService.Podcast.Api.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly IPodcastRepository _podcastRepository;
+        private readonly IPodcastSubscribersRepository _podcastSubscribersRepository;
 
         public PodcastController(
             IIdentityService identityService,
-            IPodcastRepository podcastRepository)
+            IPodcastRepository podcastRepository,
+            IPodcastSubscribersRepository podcastSubscribersRepository)
         {
             _identityService = identityService;
             _podcastRepository = podcastRepository;
+            _podcastSubscribersRepository = podcastSubscribersRepository;
         }
 
         [HttpPost("createpodcast")]
@@ -63,8 +66,26 @@ namespace PodcastService.Podcast.Api.Controllers
                 return BadRequest(new HttpRequestError() { Message = "Подкаст не найден" });
             }
 
-            var podcastInfoDto = podcast.MapToPodcastInfoDto();
+            var subscribers = _podcastSubscribersRepository.GetSubscribersByPodcastId(id);
+
+            var podcastInfoDto = podcast.MapToPodcastInfoDto(subscribers);
             return Ok(podcastInfoDto);
+        }
+
+        //todo список пользователей смаппить к читаемой форме
+        [AllowAnonymous]
+        [HttpGet("subscribers/{id:int}")]
+        public async Task<IActionResult> GetSubscribers(int id)
+        {
+            var podcast = await _podcastRepository.GetAsync(id);
+            if (podcast == null)
+            {
+                return BadRequest(new HttpRequestError() { Message = "Подкаст не найден" });
+            }
+
+            var subscribers = _podcastSubscribersRepository.GetSubscribersByPodcastId(id);
+
+            return Ok(subscribers.Select(x => new { x.Id, x.UserId }));
         }
     }
 }

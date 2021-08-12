@@ -69,7 +69,47 @@
         }
       ],
       "UpstreamPathTemplate": "/podcast/{id}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/podcast/subscribers/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.podcast.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/podcast/subscribers/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/podcastsubscribers/subscribe",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.podcast.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/podcastsubscribers/subscribe",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/podcastsubscribers/unsubscribe",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "podcastservice.podcast.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/podcastsubscribers/unsubscribe",
+      "UpstreamHttpMethod": [ "Post" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []

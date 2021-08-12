@@ -21,5 +21,17 @@ namespace PodcastService.Podcast.Api.Extensions.Mappers
             };
             return podcastSubscriber;
         }
+
+        public static PodcastSubscriberInfoDto MapToPodcastSubscriberInfoDto(
+            this Data.PodcastSubscribers podcastSubscribers)
+        {
+            var podcastSubscriberDto = new PodcastSubscriberInfoDto()
+            {
+                Id = podcastSubscribers.Id,
+                PodcastId = podcastSubscribers.PodcastId,
+                UserId = podcastSubscribers.UserId
+            };
+            return podcastSubscriberDto;
+        }
     }
 }

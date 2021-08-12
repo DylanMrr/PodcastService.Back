@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using PodcastService.Identity.Api.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
+using PodcastService.Core.Messages;
 
 namespace PodcastService.Identity.Api.Controllers
 {
@@ -54,7 +55,7 @@ namespace PodcastService.Identity.Api.Controllers
                 await _userManager.AddToRoleAsync(user, "user");
                 return StatusCode(StatusCodes.Status201Created);
             }
-            return StatusCode(StatusCodes.Status400BadRequest, "TODO");
+            return StatusCode(StatusCodes.Status400BadRequest, new HttpRequestError() { Message = "TODO" });
         }
 
         [AllowAnonymous]

@@ -1,4 +1,6 @@
-﻿using PodcastService.Podcast.Api.Data.Dto.Podcast;
+﻿using PodcastService.Podcast.Api.Data;
+using PodcastService.Podcast.Api.Data.Dto.Podcast;
+using System.Collections.Generic;
 
 namespace PodcastService.Podcast.Api.Extensions.Mappers
 {
@@ -16,7 +18,9 @@ namespace PodcastService.Podcast.Api.Extensions.Mappers
             return podcast;
         }
 
-        public static PodcastInfoDto MapToPodcastInfoDto(this Data.Podcast podcast)
+        public static PodcastInfoDto MapToPodcastInfoDto(
+            this Data.Podcast podcast, 
+            IEnumerable<PodcastSubscribers> podcastSubscribers)
         {
             var podcastInfoDto = new PodcastInfoDto()
             {
@@ -24,7 +28,7 @@ namespace PodcastService.Podcast.Api.Extensions.Mappers
                 CreatorId = podcast.CreatorId,
                 Description = podcast.Description,
                 Name = podcast.Name,
-                PodcastSubscribers = podcast.PodcastSubscribers,
+                PodcastSubscribers = podcastSubscribers,
                 CreatedUtc = podcast.CreatedUtc,
             };
             return podcastInfoDto;

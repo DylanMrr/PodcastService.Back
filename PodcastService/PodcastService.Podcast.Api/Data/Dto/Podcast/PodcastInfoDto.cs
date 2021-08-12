@@ -12,6 +12,6 @@ namespace PodcastService.Podcast.Api.Data.Dto.Podcast
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? CreatedUtc { get; set; }
-        public ICollection<Data.PodcastSubscribers> PodcastSubscribers { get; set; }
+        public IEnumerable<Data.PodcastSubscribers> PodcastSubscribers { get; set; }
     }
 }

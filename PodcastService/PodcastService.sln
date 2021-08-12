@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PodcastService.Identity.Api
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PodcastService.Podcast.Api", "PodcastService.Podcast.Api\PodcastService.Podcast.Api.csproj", "{A367FD58-30C7-421E-9824-8DC4AC26E914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastService.Core", "PodcastService.Core\PodcastService.Core.csproj", "{6C24AD85-2E4A-4008-8A68-0F4CBEC99895}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PodcastService.Core", "PodcastService.Core\PodcastService.Core.csproj", "{6C24AD85-2E4A-4008-8A68-0F4CBEC99895}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastService.FileStorage.Api", "..\PodcastService.FileStorage.Api\PodcastService.FileStorage.Api.csproj", "{F95EE48A-54E1-469B-90D7-38B3CF0DAAD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6C24AD85-2E4A-4008-8A68-0F4CBEC99895}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C24AD85-2E4A-4008-8A68-0F4CBEC99895}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C24AD85-2E4A-4008-8A68-0F4CBEC99895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95EE48A-54E1-469B-90D7-38B3CF0DAAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95EE48A-54E1-469B-90D7-38B3CF0DAAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95EE48A-54E1-469B-90D7-38B3CF0DAAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95EE48A-54E1-469B-90D7-38B3CF0DAAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

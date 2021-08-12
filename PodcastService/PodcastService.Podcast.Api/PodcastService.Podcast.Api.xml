@@ -4,6 +4,11 @@
         <name>PodcastService.Podcast.Api</name>
     </assembly>
     <members>
+        <member name="P:PodcastService.Podcast.Api.Data.Dto.PodcastSubscribers.PodcastSubscriberInfoDto.UserId">
+            <summary>
+            subscriber
+            </summary>
+        </member>
         <member name="P:PodcastService.Podcast.Api.Data.Podcast.CreatorId">
             <summary>
             UserId создателя

@@ -45,11 +45,50 @@ namespace PodcastService.Podcast.Api.Controllers
                 return BadRequest(new HttpRequestError() { Message = "Не удалось найти подкаст" });
             }
 
+            if (await _podcastSubscribersRepository.GetByPodcastId(userId, subscribeToPodcastDto.PodcastId) != null)
+            {
+                return BadRequest(new HttpRequestError() { Message = "Подписка уже оформлена" });
+            }
+
             var podcastSubscriber = subscribeToPodcastDto.MapToPodcastSubscriber(userId, podcast);
             try
             {
                 var createdItem = await _podcastSubscribersRepository.AddAsync(podcastSubscriber);
-                return StatusCode(StatusCodes.Status201Created, createdItem.Entity);
+                podcast.PodcastSubscribers.Add(podcastSubscriber);
+                await _podcastRepository.SaveAsync();
+                return StatusCode(StatusCodes.Status201Created, createdItem.Entity.MapToPodcastSubscriberInfoDto());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new HttpRequestError() { Message = "Ошибка сохранения" });
+            }
+        }
+
+        [HttpPost("unsubscribe")]
+        public async Task<ActionResult> UnsubscribeToPodcast([FromBody] UnsubscribeToPodcastDto unsubscribeToPodcastDto)
+        {
+            var userId = _identityService.GetUserIdentity();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest(new HttpRequestError() { Message = "Не удалось найти ID" });
+            }
+
+            var podcast = await _podcastRepository.GetAsync(unsubscribeToPodcastDto.PodcastId);
+            if (podcast == null)
+            {
+                return BadRequest(new HttpRequestError() { Message = "Не удалось найти подкаст" });
+            }
+
+            var podcastSubscriber = await _podcastSubscribersRepository.GetByPodcastId(userId, unsubscribeToPodcastDto.PodcastId);
+            if (podcastSubscriber == null)
+            {
+                return BadRequest(new HttpRequestError() { Message = "Подписка не оформлена" });
+            }
+
+            try
+            {
+                await _podcastSubscribersRepository.DeleteAsync(podcastSubscriber.Id);
+                return Ok();
             }
             catch
             {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PodcastService.Podcast.Api.Data
+namespace PodcastService.Podcast.Api.Data.Dto.PodcastSubscribers
 {
-    public class PodcastSubscribers
+    public class PodcastSubscriberInfoDto
     {
         public int Id { get; set; }
 
@@ -15,6 +15,5 @@ namespace PodcastService.Podcast.Api.Data
         public string UserId { get; set; }
 
         public int PodcastId { get; set; }
-        public Podcast Podcast { get; set; }
     }
 }
